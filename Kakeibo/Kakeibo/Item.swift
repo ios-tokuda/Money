@@ -12,4 +12,5 @@ class Item: Object{
     // 金額
     dynamic var price = 0
     
+    
 }

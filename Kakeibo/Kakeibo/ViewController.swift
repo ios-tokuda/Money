@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     
     private var myToolbar: UIToolbar!
     
+    
     var ItemList: Results<Item>!
     
     override func viewDidLoad() {
@@ -22,9 +23,6 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let realm = try! Realm()
         ItemList = realm.objects(Item)
         myTable.reloadData()
-        
-        
-        
         
         //TextField 設定
         //時間獲得
@@ -53,14 +51,29 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         let item = Item()
         item.name = self.myName.text
-        item.price = Int(self.myPrice.text!)!
         
         // インサート実行
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(item)
-            print("did save")
+        if self.myPrice.text != "" {
+            item.price = Int(self.myPrice.text!)!
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(item)
+                print("did save")
+                myName.text = ""
+                myPrice.text = ""
+            }
+        } else {
+            let alert: UIAlertController = UIAlertController(title: "入力エラー", message: "金額を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+            
         }
+        
         
         print("button")
         print(item.name!)
@@ -105,6 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         // 日付をフォーマットに則って取得.
         let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
+        
         myDate.text = mySelectedDate as String
     }
     
