@@ -191,6 +191,23 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         print("Edeintg: \(table.isEditing)")
     }
     
+    // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
+    func tableView(_ table: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+        if(editingStyle == UITableViewCellEditingStyle.delete) {
+            do{
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(self.ItemList[indexPath.row])
+                }
+                table.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+            }catch{
+            }
+            table.reloadData()
+        }
+    }
+  
     func done(){
         myDate.resignFirstResponder()
         myPrice.resignFirstResponder()
