@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         //Realmを取得
         let realm = try! Realm()
-        ItemList = realm.objects(Item)
+        ItemList = realm.objects(Item.self)
         myTable.reloadData()
         
         //TextField 設定
@@ -51,6 +51,10 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         let item = Item()
         item.name = self.myName.text
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        item.created = dateFormatter.date(from: self.myDate.text!)!
         
         // インサート実行
         if self.myPrice.text != "" {
