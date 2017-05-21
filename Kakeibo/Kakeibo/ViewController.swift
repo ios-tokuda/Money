@@ -92,12 +92,28 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     
     //全削除
     @IBAction func Delete(_ sender: Any) {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.deleteAll()
-            print("did delete")
-        }
-        self.myTable.reloadData()
+        let alert: UIAlertController = UIAlertController(title: "警告", message: "データをすべて削除します。\nよろしいですか？", preferredStyle:  UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+            let realm = try! Realm()
+            try! realm.write {
+                realm.deleteAll()
+                print("did delete")
+            }
+            self.myTable.reloadData()
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
+        })
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
