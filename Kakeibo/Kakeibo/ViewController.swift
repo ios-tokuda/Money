@@ -40,7 +40,10 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myToolbar = UIToolbar()
         myToolbar.sizeToFit()
         let ToolBarButton = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(ViewController.done))
-        myToolbar.items = [ToolBarButton]
+        let ToolBarSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let ToolBarButton2 = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(Regist(_:)))
+        myToolbar.items = [ToolBarButton,ToolBarSpace,ToolBarButton2]
+        myName.inputAccessoryView = myToolbar
         myDate.inputAccessoryView = myToolbar
         myPrice.inputAccessoryView = myToolbar
         
@@ -78,7 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             
         }
         
-        
+        done()
         print("button")
         print(item.name!)
         
@@ -209,6 +212,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     }
   
     func done(){
+        myName.resignFirstResponder()
         myDate.resignFirstResponder()
         myPrice.resignFirstResponder()
     }
