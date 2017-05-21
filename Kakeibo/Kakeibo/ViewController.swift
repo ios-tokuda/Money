@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         //Realmを取得
         let realm = try! Realm()
-        ItemList = realm.objects(Item.self)
+        self.ItemList = realm.objects(Item.self).filter("price > 0").sorted(byProperty: "created", ascending: false)
         myTable.reloadData()
         
         //TextField 設定
