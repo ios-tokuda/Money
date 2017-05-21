@@ -5,6 +5,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     
   
     @IBOutlet weak var RegistButton: UIButton!
+    @IBOutlet weak var DeleteButton: UIButton!
     @IBOutlet weak var myDate: UITextField!
     @IBOutlet weak var myName: UITextField!
     @IBOutlet weak var myPrice: UITextField!
@@ -21,6 +22,8 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let realm = try! Realm()
         ItemList = realm.objects(Item)
         myTable.reloadData()
+        
+        
         
         
         //TextField 設定
@@ -67,6 +70,15 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
     }
     
+    //全削除
+    @IBAction func Delete(_ sender: Any) {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+            print("did delete")
+        }
+        self.myTable.reloadData()
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         

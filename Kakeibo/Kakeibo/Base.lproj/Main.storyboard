@@ -115,17 +115,27 @@
                                 <state key="normal" title="グラフ"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5B-rj-nuO">
-                                <rect key="frame" x="293" y="85" width="31" height="30"/>
+                                <rect key="frame" x="270" y="93" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="登録"/>
                                 <connections>
                                     <action selector="Regist:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iTF-bF-9gK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5c-rf-77F">
+                                <rect key="frame" x="317" y="93" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="消去"/>
+                                <connections>
+                                    <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Hl-SX-BkS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="DeleteButton" destination="O5c-rf-77F" id="SbH-cv-Xr0"/>
+                        <outlet property="RegistButton" destination="C5B-rj-nuO" id="2yt-oM-esR"/>
                         <outlet property="myDate" destination="a0a-ai-Ol4" id="u4d-on-e9g"/>
                         <outlet property="myName" destination="X5N-Rb-pB1" id="rFw-Fl-Trd"/>
                         <outlet property="myPrice" destination="EuF-Ui-0CM" id="zEu-r3-puB"/>
