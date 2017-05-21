@@ -41,6 +41,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myToolbar.sizeToFit()
         let ToolBarButton = UIBarButtonItem(title: "完了", style: .plain, target: self, action: #selector(ViewController.done))
         myToolbar.items = [ToolBarButton]
+        myName.inputAccessoryView = myToolbar
         myDate.inputAccessoryView = myToolbar
         myPrice.inputAccessoryView = myToolbar
         
@@ -209,6 +210,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     }
   
     func done(){
+        myName.resignFirstResponder()
         myDate.resignFirstResponder()
         myPrice.resignFirstResponder()
     }
