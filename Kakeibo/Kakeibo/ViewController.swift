@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         //Realmを取得
         let realm = try! Realm()
-        ItemList = realm.objects(Item)
+        self.ItemList = realm.objects(Item.self).filter("price > 0").sorted(byProperty: "created", ascending: false)
         myTable.reloadData()
         
         //TextField 設定
@@ -51,6 +51,10 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         let item = Item()
         item.name = self.myName.text
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        item.created = dateFormatter.date(from: self.myDate.text!)!
         
         // インサート実行
         if self.myPrice.text != "" {
@@ -187,6 +191,23 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         print("Edeintg: \(table.isEditing)")
     }
     
+    // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
+    func tableView(_ table: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        
+        if(editingStyle == UITableViewCellEditingStyle.delete) {
+            do{
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(self.ItemList[indexPath.row])
+                }
+                table.deleteRows(at: [indexPath as IndexPath], with: UITableViewRowAnimation.fade)
+            }catch{
+            }
+            table.reloadData()
+        }
+    }
+  
     func done(){
         myDate.resignFirstResponder()
         myPrice.resignFirstResponder()
