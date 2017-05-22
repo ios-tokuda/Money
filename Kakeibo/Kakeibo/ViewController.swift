@@ -80,7 +80,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             present(alert, animated: true, completion: nil)
             
         }
-        
+        done()
         done()
         print("button")
         print(item.name!)
