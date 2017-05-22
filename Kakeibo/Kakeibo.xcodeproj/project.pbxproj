@@ -20,6 +20,11 @@
 		5C82588E1EB4607B0042F34B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C82588C1EB4607B0042F34B /* LaunchScreen.storyboard */; };
 		5C8258991EB4607B0042F34B /* KakeiboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8258981EB4607B0042F34B /* KakeiboTests.swift */; };
 		5C8258A41EB4607B0042F34B /* KakeiboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8258A31EB4607B0042F34B /* KakeiboUITests.swift */; };
+		7FDB089DD2B38B41449DB672 /* Pods_Kakeibo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207061E29585EE30093244F2 /* Pods_Kakeibo.framework */; };
+		8BFA62BBF2FBE039C7153AB2 /* Pods_KakeiboTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049FA32821EA76CC578B8FE5 /* Pods_KakeiboTests.framework */; };
+		AA1EE2181ED2C91100493BC8 /* Graph.Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA1EE2171ED2C91100493BC8 /* Graph.Storyboard.storyboard */; };
+		AA48E5301ED1C4EB00BF2A48 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA48E52F1ED1C4EB00BF2A48 /* GraphViewController.swift */; };
+		BBA1432F58BE90EA6B308FF0 /* Pods_KakeiboUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B5C3697D0DFC4330E0D57B /* Pods_KakeiboUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +60,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		049FA32821EA76CC578B8FE5 /* Pods_KakeiboTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakeiboTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		207061E29585EE30093244F2 /* Pods_Kakeibo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kakeibo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B5C3697D0DFC4330E0D57B /* Pods_KakeiboUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KakeiboUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DEEC42EEEBD49A82C2AAB55 /* Pods-KakeiboTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakeiboTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakeiboTests/Pods-KakeiboTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C21FD8A1EC49B950050DBD1 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
 		5C21FD8B1EC49B950050DBD1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		5C21FD971EC70CD10050DBD1 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
@@ -72,6 +81,13 @@
 		5C82589F1EB4607B0042F34B /* KakeiboUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KakeiboUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C8258A31EB4607B0042F34B /* KakeiboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakeiboUITests.swift; sourceTree = "<group>"; };
 		5C8258A51EB4607B0042F34B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9DD20DE2E4605AA41333F020 /* Pods-KakeiboTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakeiboTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakeiboTests/Pods-KakeiboTests.release.xcconfig"; sourceTree = "<group>"; };
+		A32C222DBA6ED3AADFBA2DCB /* Pods-KakeiboUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakeiboUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KakeiboUITests/Pods-KakeiboUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA1EE2171ED2C91100493BC8 /* Graph.Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Graph.Storyboard.storyboard; sourceTree = "<group>"; };
+		AA48E52F1ED1C4EB00BF2A48 /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		AACD3E4965CAFB9F1C44FB1F /* Pods-KakeiboUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KakeiboUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KakeiboUITests/Pods-KakeiboUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E7D77365976B5515F007CA81 /* Pods-Kakeibo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kakeibo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kakeibo/Pods-Kakeibo.release.xcconfig"; sourceTree = "<group>"; };
+		F7CE2137B30ED77416BC17E8 /* Pods-Kakeibo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kakeibo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kakeibo/Pods-Kakeibo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +97,7 @@
 			files = (
 				5C21FD8E1EC49B950050DBD1 /* RealmSwift.framework in Frameworks */,
 				5C21FD8C1EC49B950050DBD1 /* Realm.framework in Frameworks */,
+				7FDB089DD2B38B41449DB672 /* Pods_Kakeibo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFA62BBF2FBE039C7153AB2 /* Pods_KakeiboTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBA1432F58BE90EA6B308FF0 /* Pods_KakeiboUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +129,8 @@
 				5C8258971EB4607B0042F34B /* KakeiboTests */,
 				5C8258A21EB4607B0042F34B /* KakeiboUITests */,
 				5C8258811EB4607B0042F34B /* Products */,
+				EAE0D60BBB45C428311F7C7C /* Pods */,
+				F7D2B8EC1B0DB0BFD1D6E76E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +155,8 @@
 				5C82588A1EB4607B0042F34B /* Assets.xcassets */,
 				5C82588C1EB4607B0042F34B /* LaunchScreen.storyboard */,
 				5C82588F1EB4607B0042F34B /* Info.plist */,
+				AA48E52F1ED1C4EB00BF2A48 /* GraphViewController.swift */,
+				AA1EE2171ED2C91100493BC8 /* Graph.Storyboard.storyboard */,
 			);
 			path = Kakeibo;
 			sourceTree = "<group>";
@@ -156,6 +179,29 @@
 			path = KakeiboUITests;
 			sourceTree = "<group>";
 		};
+		EAE0D60BBB45C428311F7C7C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F7CE2137B30ED77416BC17E8 /* Pods-Kakeibo.debug.xcconfig */,
+				E7D77365976B5515F007CA81 /* Pods-Kakeibo.release.xcconfig */,
+				2DEEC42EEEBD49A82C2AAB55 /* Pods-KakeiboTests.debug.xcconfig */,
+				9DD20DE2E4605AA41333F020 /* Pods-KakeiboTests.release.xcconfig */,
+				A32C222DBA6ED3AADFBA2DCB /* Pods-KakeiboUITests.debug.xcconfig */,
+				AACD3E4965CAFB9F1C44FB1F /* Pods-KakeiboUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F7D2B8EC1B0DB0BFD1D6E76E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				207061E29585EE30093244F2 /* Pods_Kakeibo.framework */,
+				049FA32821EA76CC578B8FE5 /* Pods_KakeiboTests.framework */,
+				29B5C3697D0DFC4330E0D57B /* Pods_KakeiboUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -163,10 +209,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C8258A81EB4607B0042F34B /* Build configuration list for PBXNativeTarget "Kakeibo" */;
 			buildPhases = (
+				B968B3AFB0C1FDCFB0C6C32B /* [CP] Check Pods Manifest.lock */,
 				5C82587C1EB4607B0042F34B /* Sources */,
 				5C82587D1EB4607B0042F34B /* Frameworks */,
 				5C82587E1EB4607B0042F34B /* Resources */,
 				5C21FD901EC49B950050DBD1 /* Embed Frameworks */,
+				A135C4CD3F87FCE51F9187F7 /* [CP] Embed Pods Frameworks */,
+				696F55741B105B50B8C8C0F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -181,9 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C8258AB1EB4607B0042F34B /* Build configuration list for PBXNativeTarget "KakeiboTests" */;
 			buildPhases = (
+				620F20821CB42B1E0D9D8CFA /* [CP] Check Pods Manifest.lock */,
 				5C8258901EB4607B0042F34B /* Sources */,
 				5C8258911EB4607B0042F34B /* Frameworks */,
 				5C8258921EB4607B0042F34B /* Resources */,
+				3E03E9E187465346282329F7 /* [CP] Embed Pods Frameworks */,
+				D80BAD66C15693DC31AC6595 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -199,9 +251,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5C8258AE1EB4607B0042F34B /* Build configuration list for PBXNativeTarget "KakeiboUITests" */;
 			buildPhases = (
+				2F13008566E0DF4E395C31F9 /* [CP] Check Pods Manifest.lock */,
 				5C82589B1EB4607B0042F34B /* Sources */,
 				5C82589C1EB4607B0042F34B /* Frameworks */,
 				5C82589D1EB4607B0042F34B /* Resources */,
+				F62D33CEECCC78567D685DD0 /* [CP] Embed Pods Frameworks */,
+				8FF8322460B5B39206C2E1A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,6 +326,7 @@
 				5C82588E1EB4607B0042F34B /* LaunchScreen.storyboard in Resources */,
 				5C82588B1EB4607B0042F34B /* Assets.xcassets in Resources */,
 				5C8258891EB4607B0042F34B /* Main.storyboard in Resources */,
+				AA1EE2181ED2C91100493BC8 /* Graph.Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,12 +346,151 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2F13008566E0DF4E395C31F9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3E03E9E187465346282329F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakeiboTests/Pods-KakeiboTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		620F20821CB42B1E0D9D8CFA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		696F55741B105B50B8C8C0F9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kakeibo/Pods-Kakeibo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FF8322460B5B39206C2E1A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakeiboUITests/Pods-KakeiboUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A135C4CD3F87FCE51F9187F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kakeibo/Pods-Kakeibo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B968B3AFB0C1FDCFB0C6C32B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D80BAD66C15693DC31AC6595 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakeiboTests/Pods-KakeiboTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F62D33CEECCC78567D685DD0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KakeiboUITests/Pods-KakeiboUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5C82587C1EB4607B0042F34B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				5C8258861EB4607B0042F34B /* ViewController.swift in Sources */,
+				AA48E5301ED1C4EB00BF2A48 /* GraphViewController.swift in Sources */,
 				5C21FD981EC70CD10050DBD1 /* ListCell.swift in Sources */,
 				5C4221BC1EC4997B00936466 /* Item.swift in Sources */,
 				5C8258841EB4607B0042F34B /* AppDelegate.swift in Sources */,
@@ -448,6 +643,7 @@
 		};
 		5C8258A91EB4607B0042F34B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7CE2137B30ED77416BC17E8 /* Pods-Kakeibo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7M7D73DJ7J;
@@ -465,6 +661,7 @@
 		};
 		5C8258AA1EB4607B0042F34B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7D77365976B5515F007CA81 /* Pods-Kakeibo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7M7D73DJ7J;
@@ -482,6 +679,7 @@
 		};
 		5C8258AC1EB4607B0042F34B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DEEC42EEEBD49A82C2AAB55 /* Pods-KakeiboTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -496,6 +694,7 @@
 		};
 		5C8258AD1EB4607B0042F34B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9DD20DE2E4605AA41333F020 /* Pods-KakeiboTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -510,6 +709,7 @@
 		};
 		5C8258AF1EB4607B0042F34B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A32C222DBA6ED3AADFBA2DCB /* Pods-KakeiboUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = KakeiboUITests/Info.plist;
@@ -523,6 +723,7 @@
 		};
 		5C8258B01EB4607B0042F34B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AACD3E4965CAFB9F1C44FB1F /* Pods-KakeiboUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = KakeiboUITests/Info.plist;
