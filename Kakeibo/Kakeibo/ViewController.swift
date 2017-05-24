@@ -60,9 +60,23 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let item = Item()
         item.name = self.myName.text
         
+        var now = Date()
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy年MM月dd日"
         item.created = dateFormatter.date(from: self.myDate.text!)!
+        now = dateFormatter.date(from: self.myDate.text!)!
+        
+        let yearFormatter = DateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "MM"
+        
+        item.year = Int(yearFormatter.string(from: now))!
+        item.month = Int(monthFormatter.string(from: now))!
+        
+        //item.month = Int(monthFormatter.string(from: item.created))!
+        
         
         // インサート実行
         if self.myPrice.text != "" {
@@ -141,9 +155,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let now = Date()
         
         year = Int(yearFormatter.string(from: now))!
-        print(year)
         month = Int(monthFormatter.string(from: now))!
-        print(month)
         
         return formatter.string(from: now)
     }
