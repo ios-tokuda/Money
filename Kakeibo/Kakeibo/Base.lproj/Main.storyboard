@@ -133,8 +133,8 @@
                                     <action selector="Delete:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Hl-SX-BkS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBR-Nr-nhn">
-                                <rect key="frame" x="166" y="135" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBR-Nr-nhn">
+                                <rect key="frame" x="130" y="135" width="114" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -144,11 +144,17 @@
                                 <rect key="frame" x="64" y="131" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="previous:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fDm-3L-hK1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtB-qr-9UW">
-                                <rect key="frame" x="278" y="135" width="30" height="30"/>
+                                <rect key="frame" x="277" y="131" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="next:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VAu-56-Aop"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -156,10 +162,13 @@
                     <connections>
                         <outlet property="DeleteButton" destination="O5c-rf-77F" id="SbH-cv-Xr0"/>
                         <outlet property="RegistButton" destination="C5B-rj-nuO" id="2yt-oM-esR"/>
+                        <outlet property="leftArrow" destination="UnD-cc-m6g" id="v1A-la-ZdM"/>
                         <outlet property="myDate" destination="a0a-ai-Ol4" id="u4d-on-e9g"/>
                         <outlet property="myName" destination="X5N-Rb-pB1" id="rFw-Fl-Trd"/>
                         <outlet property="myPrice" destination="EuF-Ui-0CM" id="zEu-r3-puB"/>
                         <outlet property="myTable" destination="7ih-fx-ZhH" id="Q55-z3-CFu"/>
+                        <outlet property="rightArrow" destination="wtB-qr-9UW" id="e4j-Vc-LTX"/>
+                        <outlet property="viewSource" destination="wBR-Nr-nhn" id="Fvu-1u-lJ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

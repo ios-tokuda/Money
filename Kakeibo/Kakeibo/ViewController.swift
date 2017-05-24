@@ -10,9 +10,13 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     @IBOutlet weak var myName: UITextField!
     @IBOutlet weak var myPrice: UITextField!
     @IBOutlet weak var myTable: UITableView!
+    @IBOutlet weak var viewSource: UILabel!
+    @IBOutlet weak var rightArrow: UIButton!
+    @IBOutlet weak var leftArrow: UIButton!
     
     private var myToolbar: UIToolbar!
-    
+    var year = 0;
+    var month = 0;
     
     var ItemList: Results<Item>!
     
@@ -21,12 +25,13 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         //Realmを取得
         let realm = try! Realm()
-        self.ItemList = realm.objects(Item.self).filter("price > 0").sorted(byProperty: "created", ascending: false)
+        self.ItemList = realm.objects(Item.self).filter("price > 0").sorted(byKeyPath: "created", ascending: false)
         myTable.reloadData()
         
         //TextField 設定
         //時間獲得
         myDate.text = getNowClockString()
+        changeViewSource()
         
         myDate.delegate = self
         myName.delegate = self
@@ -128,7 +133,18 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     func getNowClockString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
+        let yearFormatter = DateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "MM"
+        
         let now = Date()
+        
+        year = Int(yearFormatter.string(from: now))!
+        print(year)
+        month = Int(monthFormatter.string(from: now))!
+        print(month)
+        
         return formatter.string(from: now)
     }
     
@@ -233,6 +249,31 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myPrice.resignFirstResponder()
     }
   
+    func changeViewSource(){
+        
+        viewSource.text = "\(year)年\(month)月"
+    }
+    
+    @IBAction func next(_ sender: Any) {
+        if month < 12 {
+            month += 1
+        } else {
+            year += 1
+            month = 1
+        }
+        changeViewSource()
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        if month > 1 {
+            month -= 1
+        } else {
+            year -= 1
+            month = 12
+        }
+        changeViewSource()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
