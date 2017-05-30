@@ -173,6 +173,26 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
         
         myDate.text = mySelectedDate as String
+        
+        
+        //DatePickerの変化により、TableViewに表示されるデータを変更
+        let yearFormatter = DateFormatter()
+        yearFormatter.dateFormat = "yyyy"
+        let monthFormatter = DateFormatter()
+        monthFormatter.dateFormat = "MM"
+        
+        
+        var set = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        set = dateFormatter.date(from: self.myDate.text!)!
+        
+        year = Int(yearFormatter.string(from: set))!
+        month = Int(monthFormatter.string(from: set))!
+        
+        changeViewSource()
+        doReload()
     }
     
     //テキストフィールド選択時、DatePicker表示
