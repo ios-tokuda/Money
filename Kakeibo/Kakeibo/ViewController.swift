@@ -189,6 +189,17 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myDatePicker.layer.cornerRadius = 5.0
         myDatePicker.datePickerMode = UIDatePickerMode.date
         
+        
+        //テキストフィールドの値をDatePickerに反映
+        var set = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy年MM月dd日"
+        set = dateFormatter.date(from: self.myDate.text!)!
+        
+        myDatePicker.setDate(set, animated: true)
+        
+        
         // 値が変わった際のイベントを登録する.
         myDatePicker.addTarget(self, action: #selector(ViewController.onDidChangeDate(sender:)), for: .valueChanged)
         return true
