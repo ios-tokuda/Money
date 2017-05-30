@@ -23,15 +23,17 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Realmを取得
-        let realm = try! Realm()
-        self.ItemList = realm.objects(Item.self).filter("price > 0").sorted(byKeyPath: "created", ascending: false)
-        myTable.reloadData()
-        
-        //TextField 設定
         //時間獲得
         myDate.text = getNowClockString()
         changeViewSource()
+        
+        //Realmを取得
+        let realm = try! Realm()
+        self.ItemList = realm.objects(Item.self).filter("month == %@", month).sorted(byKeyPath: "created", ascending: false)
+        myTable.reloadData()
+        
+        //TextField 設定
+        
         
         myDate.delegate = self
         myName.delegate = self
@@ -266,6 +268,13 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         viewSource.text = "\(year)年\(month)月"
     }
     
+    func doReload(){
+        let realm = try! Realm()
+        self.ItemList = realm.objects(Item.self).filter("month == %@", month).sorted(byKeyPath: "created", ascending: false)
+        self.myTable.reloadData()
+
+    }
+    
     @IBAction func next(_ sender: Any) {
         if month < 12 {
             month += 1
@@ -274,6 +283,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             month = 1
         }
         changeViewSource()
+        doReload()
     }
     
     @IBAction func previous(_ sender: Any) {
@@ -284,6 +294,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             month = 12
         }
         changeViewSource()
+        doReload()
     }
     
     override func didReceiveMemoryWarning() {
