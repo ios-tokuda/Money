@@ -12,6 +12,9 @@ class Item: Object{
     // 登録月
     dynamic var month = 0;
     
+    // 登録日
+    dynamic var day = 0;
+    
     // 品名
     dynamic var name: String? = nil
     

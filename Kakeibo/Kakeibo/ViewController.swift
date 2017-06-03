@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     @IBOutlet weak var rightArrow: UIButton!
     @IBOutlet weak var leftArrow: UIButton!
     
+    var edit = Date()
+    
     private var myToolbar: UIToolbar!
     var year = 0;
     var month = 0;
@@ -37,6 +39,8 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         myDate.delegate = self
         myName.delegate = self
+        myName.placeholder = "品名"
+        myPrice.placeholder = "金額"
         
         //キーボードを数値のみに制限
         myPrice.keyboardType = UIKeyboardType.numberPad
@@ -73,9 +77,12 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         yearFormatter.dateFormat = "yyyy"
         let monthFormatter = DateFormatter()
         monthFormatter.dateFormat = "MM"
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "dd"
         
         item.year = Int(yearFormatter.string(from: now))!
         item.month = Int(monthFormatter.string(from: now))!
+        item.day = Int(dayFormatter.string(from: now))!
         
         //item.month = Int(monthFormatter.string(from: item.created))!
         
@@ -262,13 +269,82 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         formatter.dateFormat = "yyyy/MM/dd"
         cell.CellDate.text = formatter.string(from: item.created)
         
-        
         return cell
     }
     
     func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
+        print("IndexPath: \(indexPath.row)")
         print("Value: \(ItemList[indexPath.row])")
         print("Edeintg: \(table.isEditing)")
+        
+        let alert: UIAlertController = UIAlertController(title: "入力エラー", message: "金額を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("OK")
+        })
+        alert.addAction(defaultAction)
+        
+        
+        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            
+            
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy年MM月dd日"
+            
+            // DatePickerを生成する.
+            let myDatePicker: UIDatePicker = UIDatePicker()
+            text.inputView = myDatePicker
+            
+            
+            // datePickerを設定（デフォルトでは位置は画面上部）する.
+            myDatePicker.frame = CGRect(x:0, y:420, width:self.view.frame.width, height:250)
+            myDatePicker.timeZone = NSTimeZone.local
+            myDatePicker.backgroundColor = UIColor.white
+            myDatePicker.layer.cornerRadius = 5.0
+            myDatePicker.datePickerMode = UIDatePickerMode.date
+                
+                
+            //テキストフィールドの値をDatePickerに反映
+            var set = Date()
+                
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy年MM月dd日"
+            set = self.ItemList[indexPath.row].created
+            
+            myDatePicker.setDate(set, animated: true)
+            
+            
+            // 値が変わった際のイベントを登録する.
+            myDatePicker.addTarget(self, action: #selector(ViewController.editDate(sender:)), for: .valueChanged)
+                
+ 
+            text.text = formatter.string(from: self.ItemList[indexPath.row].created)
+            self.edit = self.ItemList[indexPath.row].created
+            let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
+            label.text = "登録日"
+            text.leftView = label
+            text.leftViewMode = UITextFieldViewMode.always
+            
+            
+        })
+        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            text.text = self.ItemList[indexPath.row].name
+            let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
+            label.text = "品名"
+            text.leftView = label
+            text.leftViewMode = UITextFieldViewMode.always
+            text.inputAccessoryView = self.myToolbar
+        })
+        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+            text.text = String(self.ItemList[indexPath.row].price)
+            let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
+            label.text = "金額"
+            text.leftView = label
+            text.leftViewMode = UITextFieldViewMode.always
+            text.keyboardType = UIKeyboardType.numberPad
+        })
+        present(alert, animated: true, completion: nil)
     }
     
     // TableViewのCellの削除を行った際に、Realmに保存したデータを削除する
@@ -326,6 +402,21 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         }
         changeViewSource()
         doReload()
+    }
+    
+    func editDate(sender: UIDatePicker){
+        
+        print("ok")
+        
+        /* フォーマットを生成.
+         let myDateFormatter: DateFormatter = DateFormatter()
+         myDateFormatter.dateFormat = "yyyy年MM月dd日"
+         
+         // 日付をフォーマットに則って取得.
+         let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
+         
+         edit = mySelectedDate
+        */
     }
     
     override func didReceiveMemoryWarning() {
