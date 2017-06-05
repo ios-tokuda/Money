@@ -10,9 +10,11 @@ import UIKit
 
 class ListCell: UITableViewCell {
     
-    @IBOutlet weak var CellDate: UITextField!
-    @IBOutlet weak var CellName: UITextField!
-    @IBOutlet weak var CellPrice: UITextField!
+
+    
+    @IBOutlet weak var CellDate: UILabel!
+    @IBOutlet weak var CellName: UILabel!
+    @IBOutlet weak var CellPrice: UILabel!
     
     
     override func layoutSubviews() {
