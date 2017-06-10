@@ -14,6 +14,10 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     @IBOutlet weak var rightArrow: UIButton!
     @IBOutlet weak var leftArrow: UIButton!
     
+    let editDate: UITextField = UITextField()
+    let editName: UITextField = UITextField()
+    let editPrice: UITextField = UITextField()
+    
     var edit = Date()
     
     private var myToolbar: UIToolbar!
@@ -21,6 +25,9 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     var month = 0;
     
     var ItemList: Results<Item>!
+    
+    
+    var tmp = Item()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,16 +284,27 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         print("Value: \(ItemList[indexPath.row])")
         print("Edeintg: \(table.isEditing)")
         
-        let alert: UIAlertController = UIAlertController(title: "入力エラー", message: "金額を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-            // ボタンが押された時の処理を書く（クロージャ実装）
-            (action: UIAlertAction!) -> Void in
-            print("OK")
+        tmp = self.ItemList[indexPath.row]
+        
+        let alert: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
+        
+        
+        let edit = UIAlertAction(title: "アクション１", style: UIAlertActionStyle.default, handler: {
+            (action: UIAlertAction!) in
+            
+            
+            self.editName.text = alert.textFields![1].text
+            self.editPrice.text = alert.textFields![2].text
+            
+            //self.editcell(_i: indexPath.row)
+            self.addcell(_tmp: self.tmp)
+            print(self.editDate)
         })
-        alert.addAction(defaultAction)
+        
+        alert.addAction(edit)
         
         
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
+        alert.addTextField(configurationHandler: {(editDate) -> Void in
             
             
             let formatter = DateFormatter()
@@ -294,7 +312,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             
             // DatePickerを生成する.
             let myDatePicker: UIDatePicker = UIDatePicker()
-            text.inputView = myDatePicker
+            editDate.inputView = myDatePicker
             
             
             // datePickerを設定（デフォルトでは位置は画面上部）する.
@@ -319,30 +337,30 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             myDatePicker.addTarget(self, action: #selector(ViewController.editDate(sender:)), for: .valueChanged)
                 
  
-            text.text = formatter.string(from: self.ItemList[indexPath.row].created)
+            editDate.text = formatter.string(from: self.ItemList[indexPath.row].created)
             self.edit = self.ItemList[indexPath.row].created
             let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
             label.text = "登録日"
-            text.leftView = label
-            text.leftViewMode = UITextFieldViewMode.always
+            editDate.leftView = label
+            editDate.leftViewMode = UITextFieldViewMode.always
             
             
         })
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.text = self.ItemList[indexPath.row].name
+        alert.addTextField(configurationHandler: {(editName) -> Void in
+            editName.text = self.ItemList[indexPath.row].name
             let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
             label.text = "品名"
-            text.leftView = label
-            text.leftViewMode = UITextFieldViewMode.always
-            text.inputAccessoryView = self.myToolbar
+            editName.leftView = label
+            editName.leftViewMode = UITextFieldViewMode.always
+            editName.inputAccessoryView = self.myToolbar
         })
-        alert.addTextField(configurationHandler: {(text:UITextField!) -> Void in
-            text.text = String(self.ItemList[indexPath.row].price)
+        alert.addTextField(configurationHandler: {(editPrice) -> Void in
+            editPrice.text = String(self.ItemList[indexPath.row].price)
             let label:UILabel = UILabel(frame: CGRect(x: 0,y: 0,width: 50,height: 30))
             label.text = "金額"
-            text.leftView = label
-            text.leftViewMode = UITextFieldViewMode.always
-            text.keyboardType = UIKeyboardType.numberPad
+            editPrice.leftView = label
+            editPrice.leftViewMode = UITextFieldViewMode.always
+            editPrice.keyboardType = UIKeyboardType.numberPad
         })
         present(alert, animated: true, completion: nil)
     }
@@ -417,6 +435,40 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
          
          edit = mySelectedDate
         */
+    }
+    
+    func editcell(_i: Int){
+        do{
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(self.ItemList[_i])
+            }
+            print("delete")
+            myTable.reloadData()
+        }catch{
+        }
+
+    }
+    func addcell(_tmp:Item){
+        
+        /*tmp.name = self.editName.text
+        //tmp.price = Int(self.editPrice.text!)!
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(tmp)
+            print("did save")
+        }
+ */
+        
+        
+        let realm = try! Realm()
+        try! realm.write {
+            tmp.name = editName.text
+            tmp.price = Int(editPrice.text!)!
+        }
+        myTable.reloadData()
+        print(tmp)
+
     }
     
     override func didReceiveMemoryWarning() {
