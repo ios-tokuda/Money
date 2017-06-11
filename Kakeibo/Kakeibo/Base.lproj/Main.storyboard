@@ -172,7 +172,7 @@
                 <viewControllerPlaceholder storyboardName="Graph.Storyboard" id="KiO-IU-3w0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kcc-6L-GnU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="37"/>
+            <point key="canvasLocation" x="973" y="-86"/>
         </scene>
     </scenes>
 </document>
