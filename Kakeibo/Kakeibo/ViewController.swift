@@ -25,9 +25,10 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     var month = 0;
     
     var ItemList: Results<Item>!
-    
+    var alertTmp: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
     
     var tmp = Item()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -279,6 +280,20 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         return cell
     }
     
+    func changeDate(sender: UIDatePicker){
+        
+        
+        // フォーマットを生成.
+        let myDateFormatter: DateFormatter = DateFormatter()
+        myDateFormatter.dateFormat = "yyyy年MM月dd日"
+        
+        // 日付をフォーマットに則って取得.
+        let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
+        
+        self.alertTmp.textFields![0].text = mySelectedDate as String
+        
+    }
+    
     func tableView(_ table: UITableView, didSelectRowAt indexPath:IndexPath) {
         print("IndexPath: \(indexPath.row)")
         print("Value: \(ItemList[indexPath.row])")
@@ -286,22 +301,25 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         tmp = self.ItemList[indexPath.row]
         
-        let alert: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
         
+        let alert: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
+        self.alertTmp = alert
         
         let edit = UIAlertAction(title: "アクション１", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
-            
+            self.editDate.text = alert.textFields![0].text
             self.editName.text = alert.textFields![1].text
             self.editPrice.text = alert.textFields![2].text
             
-            //self.editcell(_i: indexPath.row)
+            
             self.addcell(_tmp: self.tmp)
             print(self.editDate)
         })
         
         alert.addAction(edit)
+        
+        
         
         
         alert.addTextField(configurationHandler: {(editDate) -> Void in
@@ -334,7 +352,8 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             
             
             // 値が変わった際のイベントを登録する.
-            myDatePicker.addTarget(self, action: #selector(ViewController.editDate(sender:)), for: .valueChanged)
+            myDatePicker.addTarget(self, action: #selector(ViewController.changeDate(sender:)), for: .valueChanged)
+            
                 
  
             editDate.text = formatter.string(from: self.ItemList[indexPath.row].created)
@@ -426,29 +445,19 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         print("ok")
         
-        /* フォーマットを生成.
+         /*フォーマットを生成.
          let myDateFormatter: DateFormatter = DateFormatter()
          myDateFormatter.dateFormat = "yyyy年MM月dd日"
          
          // 日付をフォーマットに則って取得.
          let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
          
-         edit = mySelectedDate
+        
         */
+        
     }
     
-    func editcell(_i: Int){
-        do{
-            let realm = try Realm()
-            try realm.write {
-                realm.delete(self.ItemList[_i])
-            }
-            print("delete")
-            myTable.reloadData()
-        }catch{
-        }
-
-    }
+    
     func addcell(_tmp:Item){
         
         /*tmp.name = self.editName.text
@@ -463,8 +472,27 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         let realm = try! Realm()
         try! realm.write {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy年MM月dd日"
+            tmp.created = dateFormatter.date(from: self.editDate.text!)!
+            
+            let yearFormatter = DateFormatter()
+            yearFormatter.dateFormat = "yyyy"
+            let monthFormatter = DateFormatter()
+            monthFormatter.dateFormat = "MM"
+            let dayFormatter = DateFormatter()
+            dayFormatter.dateFormat = "dd"
+
+            var now = Date()
+            now = dateFormatter.date(from: self.editDate.text!)!
+            tmp.year = Int(yearFormatter.string(from: now))!
+            tmp.month = Int(monthFormatter.string(from: now))!
+            tmp.day = Int(dayFormatter.string(from: now))!
+
+            
             tmp.name = editName.text
             tmp.price = Int(editPrice.text!)!
+            
         }
         myTable.reloadData()
         print(tmp)
