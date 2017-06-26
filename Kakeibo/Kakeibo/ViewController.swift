@@ -5,12 +5,12 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     
   
     @IBOutlet weak var RegistButton: UIButton!
-    @IBOutlet weak var DeleteButton: UIButton!
     @IBOutlet weak var myDate: UITextField!
     @IBOutlet weak var myName: UITextField!
     @IBOutlet weak var myPrice: UITextField!
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var viewSource: UILabel!
+    @IBOutlet weak var sumLabel: UILabel!
     @IBOutlet weak var rightArrow: UIButton!
     @IBOutlet weak var leftArrow: UIButton!
     
@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
     private var myToolbar: UIToolbar!
     var year = 0;
     var month = 0;
+    var sum = 0;
     
     var ItemList: Results<Item>!
     var alertTmp: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
@@ -66,6 +67,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myDate.inputAccessoryView = myToolbar
         myPrice.inputAccessoryView = myToolbar
         
+        sumReload()
     }
     
     
@@ -123,6 +125,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         
         //テーブルを再読込
         self.myTable.reloadData()
+        sumReload()
         
     }
     
@@ -305,7 +308,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         let alert: UIAlertController = UIAlertController(title: "編集", message: "編集値を入力してください", preferredStyle:  UIAlertControllerStyle.alert)
         self.alertTmp = alert
         
-        let edit = UIAlertAction(title: "アクション１", style: UIAlertActionStyle.default, handler: {
+        let edit = UIAlertAction(title: "保存", style: UIAlertActionStyle.default, handler: {
             (action: UIAlertAction!) in
             
             self.editDate.text = alert.textFields![0].text
@@ -314,10 +317,17 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             
             
             self.addcell(_tmp: self.tmp)
+            self.sumReload()
             print(self.editDate)
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            // ボタンが押された時の処理を書く（クロージャ実装）
+            (action: UIAlertAction!) -> Void in
+            print("Cancel")
         })
         
         alert.addAction(edit)
+        alert.addAction(cancelAction)
         
         
         
@@ -398,6 +408,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
             }catch{
             }
             table.reloadData()
+            sumReload()
         }
     }
   
@@ -428,6 +439,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         }
         changeViewSource()
         doReload()
+        sumReload()
     }
     
     @IBAction func previous(_ sender: Any) {
@@ -439,36 +451,12 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         }
         changeViewSource()
         doReload()
+        sumReload()
     }
     
-    func editDate(sender: UIDatePicker){
-        
-        print("ok")
-        
-         /*フォーマットを生成.
-         let myDateFormatter: DateFormatter = DateFormatter()
-         myDateFormatter.dateFormat = "yyyy年MM月dd日"
-         
-         // 日付をフォーマットに則って取得.
-         let mySelectedDate: NSString = myDateFormatter.string(from: sender.date) as NSString
-         
-        
-        */
-        
-    }
     
     
     func addcell(_tmp:Item){
-        
-        /*tmp.name = self.editName.text
-        //tmp.price = Int(self.editPrice.text!)!
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(tmp)
-            print("did save")
-        }
- */
-        
         
         let realm = try! Realm()
         try! realm.write {
@@ -497,6 +485,23 @@ class ViewController: UIViewController, UITextFieldDelegate,UITableViewDelegate,
         myTable.reloadData()
         print(tmp)
 
+    }
+    
+    @IBAction func test(_ sender: Any) {
+        sumReload()
+    }
+    
+    func sumReload() {
+        
+        sum = 0
+        
+        let count = self.ItemList.count
+        for var i in 0 ..< count {
+            sum += self.ItemList[i].price
+        }
+        
+        
+        sumLabel.text = String(sum)
     }
     
     override func didReceiveMemoryWarning() {

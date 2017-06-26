@@ -8,6 +8,7 @@ target 'Kakeibo' do
   # Pods for Kakeibo
 
   pod ‘Charts’
+  pod 'SlideMenuControllerSwift'
 
   target 'KakeiboTests' do
     inherit! :search_paths
