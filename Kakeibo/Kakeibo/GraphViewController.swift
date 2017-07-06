@@ -16,18 +16,20 @@ class GraphViewController: UIViewController{
     
     var points: [String] = []
     var prices: [Double] = []
+    var total: Int = 0
 
     @IBOutlet var barChartView: BarChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var date = Date(timeInterval: -60*60*24*6, since: Date())//一週間前の日時を取得
-        let calender = NSCalendar(calendarIdentifier: .gregorian)
-        date = (calender?.startOfDay(for: date))!   //日の始めに合わせる//Optional型注意
-        
+        var date = Date()//6ヶ月前の日時を取得
+        date = dayStartOfMonth(date: date)
+        for i in 0..<5{
+            date = oneMonthAgo(date: date)
+        }
         let format = DateFormatter()
-        format.dateFormat = "dd"
+        format.dateFormat = "MM"
         
         let realm = try! Realm()    //失敗した時のエラー処理が必要
         var items:Results<Item>!
@@ -38,16 +40,21 @@ class GraphViewController: UIViewController{
         barChartView.drawBordersEnabled = true
         barChartView.xAxis.labelPosition = .bottom
         barChartView.chartDescription?.text = "Money chart"
+        barChartView.extraTopOffset = 100.0
         
-        for i in 0..<7{
+        for i in 0..<6{
             points += [format.string(from: date)]
-            items = realm.objects(Item.self).filter(NSPredicate(format: "created BETWEEN {%@,%@}", date as CVarArg, Date(timeInterval: 60*60*24-1, since: date) as CVarArg))//日付ごとにrealmから呼び出し
+            items = realm.objects(Item.self).filter(NSPredicate(format: "created BETWEEN {%@,%@}", date as CVarArg, oneMonthAfter(date: date) as CVarArg))//月にrealmから呼び出し
             prices += [0]
             for j in 0..<items.count{
                 prices[i] += Double(items[j].price)
+                total = total + items[j].price
             }
-            date = Date(timeInterval: 60*60*24, since: date)
+            date = oneMonthAfter(date: date)
         }
+        
+        let averageBar = ChartLimitLine(limit: Double(total/6), label: "平均="+String(total/6)+"円")
+        barChartView.rightAxis.addLimitLine(averageBar)
         
         setChart(dataPoints: points, values: prices)
     }
@@ -72,6 +79,30 @@ class GraphViewController: UIViewController{
         barChartView.data = chartData
         
         barChartView.xAxis.valueFormatter = BarChartFormatter(labels: dataPoints)
+    }
+    
+    func oneMonthAgo(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.month = (comp?.month)! - 1
+        return (calender?.date(from: comp!))!
+    }
+    
+    func oneMonthAfter(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.month = (comp?.month)! + 1
+        return (calender?.date(from: comp!))!
+    }
+    
+    func dayStartOfMonth(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.day = 1
+        comp?.hour = 0
+        comp?.minute = 0
+        comp?.second = 0
+        return (calender?.date(from: comp!))!
     }
 }
 

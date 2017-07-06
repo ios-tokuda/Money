@@ -280,7 +280,7 @@
 				TargetAttributes = {
 					5C82587F1EB4607B0042F34B = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 7M7D73DJ7J;
+						DevelopmentTeam = LAYNUZT4Z7;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -646,14 +646,14 @@
 			baseConfigurationReference = F7CE2137B30ED77416BC17E8 /* Pods-Kakeibo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7M7D73DJ7J;
+				DEVELOPMENT_TEAM = LAYNUZT4Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Kakeibo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Kakeibo";
+				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Kakeib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -664,14 +664,14 @@
 			baseConfigurationReference = E7D77365976B5515F007CA81 /* Pods-Kakeibo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7M7D73DJ7J;
+				DEVELOPMENT_TEAM = LAYNUZT4Z7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Kakeibo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Kakeibo";
+				PRODUCT_BUNDLE_IDENTIFIER = "iOS-Kakeib";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
