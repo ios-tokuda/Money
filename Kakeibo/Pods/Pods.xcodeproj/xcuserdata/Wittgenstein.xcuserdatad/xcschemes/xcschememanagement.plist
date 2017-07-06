@@ -2,14 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< HEAD
+=======
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Kakeibo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KakeiboTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-KakeiboUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SlideMenuControllerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+>>>>>>> Main_Screen
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B88EB4BF2351FB3002ADB8FA3A123FBA</key>
+		<key>3A31EB0D3181710037B70DD81E2988A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E977CC500A1256BCF980CE23CCD8B2CE</key>
+		<key>7F2273A4F011AB60E257318882B9223C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B88EB4BF2351FB3002ADB8FA3A123FBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
