@@ -13,26 +13,14 @@ import RealmSwift
 import Charts
 
 class GraphViewController: UIViewController{
-    
-    var points: [String] = []
-    var prices: [Double] = []
-    var total: Int = 0
+    var currentdate = Date()
+    let averageBar = ChartLimitLine()
 
     @IBOutlet var barChartView: BarChartView!
-    
+    @IBOutlet weak var label: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var date = Date()//6ヶ月前の日時を取得
-        date = dayStartOfMonth(date: date)
-        for i in 0..<5{
-            date = oneMonthAgo(date: date)
-        }
-        let format = DateFormatter()
-        format.dateFormat = "MM"
-        
-        let realm = try! Realm()    //失敗した時のエラー処理が必要
-        var items:Results<Item>!
         
         barChartView.animate(yAxisDuration: 2.0)
         barChartView.pinchZoomEnabled = false
@@ -40,11 +28,38 @@ class GraphViewController: UIViewController{
         barChartView.drawBordersEnabled = true
         barChartView.xAxis.labelPosition = .bottom
         barChartView.chartDescription?.text = "Money chart"
-        barChartView.extraTopOffset = 100.0
+        barChartView.extraTopOffset = 150.0
+        
+        barChartView.rightAxis.addLimitLine(averageBar)
+        
+        showChart(cdate: currentdate)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func showChart(cdate:Date){
+        var points: [String] = []
+        var prices: [Double] = []
+        var total: Int = 0
+        var date = dayStartOfMonth(date: cdate)
+        let format = DateFormatter()
+        format.dateFormat = "MM"
+        
+        let realm = try! Realm()    //失敗した時のエラー処理が必要
+        var items:Results<Item>!
+        
+        for i in 0..<5{//1年前
+            date = oneMonthAgo(date: date)
+        }
+        
+        label.text = String(dateToYear(date: date)) + "年" + String(dateToMonth(date: date)) + "月〜" + String(dateToYear(date: cdate)) + "年" + String(dateToMonth(date: cdate)) + "月"
         
         for i in 0..<6{
             points += [format.string(from: date)]
-            items = realm.objects(Item.self).filter(NSPredicate(format: "created BETWEEN {%@,%@}", date as CVarArg, oneMonthAfter(date: date) as CVarArg))//月にrealmから呼び出し
+            items = realm.objects(Item.self).filter(NSPredicate(format: "created BETWEEN {%@,%@}", date as CVarArg, oneMonthAfter(date: date) as CVarArg))//月ごとにrealmから呼び出し
             prices += [0]
             for j in 0..<items.count{
                 prices[i] += Double(items[j].price)
@@ -53,15 +68,10 @@ class GraphViewController: UIViewController{
             date = oneMonthAfter(date: date)
         }
         
-        let averageBar = ChartLimitLine(limit: Double(total/6), label: "平均="+String(total/6)+"円")
-        barChartView.rightAxis.addLimitLine(averageBar)
+        averageBar.limit = Double(total/6)
+        averageBar.label = "月平均="+String(total/6)+"円"
         
         setChart(dataPoints: points, values: prices)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setChart(dataPoints: [String], values: [Double]) {
@@ -79,6 +89,22 @@ class GraphViewController: UIViewController{
         barChartView.data = chartData
         
         barChartView.xAxis.valueFormatter = BarChartFormatter(labels: dataPoints)
+    }
+    
+    
+    @IBAction func beforeButton(_ sender: Any) {
+        for i in 0..<6{
+            currentdate = oneMonthAgo(date: currentdate)
+        }
+        showChart(cdate: currentdate)
+    }
+    
+    
+    @IBAction func nextButton(_ sender: Any) {
+        for i in 0..<6{
+            currentdate = oneMonthAfter(date: currentdate)
+        }
+        showChart(cdate: currentdate)
     }
     
     func oneMonthAgo(date: Date) -> Date {
@@ -103,6 +129,43 @@ class GraphViewController: UIViewController{
         comp?.minute = 0
         comp?.second = 0
         return (calender?.date(from: comp!))!
+    }
+
+    func dayStartOfYear(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.month = 1
+        comp?.day = 1
+        comp?.hour = 0
+        comp?.minute = 0
+        comp?.second = 0
+        return (calender?.date(from: comp!))!
+    }
+    
+    func oneYearAgo(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.year = (comp?.year)! - 1
+        return (calender?.date(from: comp!))!
+    }
+    
+    func oneYearAfter(date: Date) -> Date {
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        comp?.year = (comp?.year)! + 1
+        return (calender?.date(from: comp!))!
+    }
+    
+    func dateToYear(date:Date) -> Int{
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        return (comp?.year)!
+    }
+    
+    func dateToMonth(date:Date) -> Int{
+        let calender = NSCalendar(calendarIdentifier: .gregorian)
+        var comp = calender?.components([.year,.month,.day,.hour,.minute,.second], from: date)
+        return (comp?.month)!
     }
 }
 
