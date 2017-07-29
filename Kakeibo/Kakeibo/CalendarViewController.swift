@@ -171,7 +171,7 @@ class CalendarViewController: UIViewController ,UICollectionViewDataSource,UICol
                 if(total == 0){
                     cell.textLabel?.text = dateManager.conversionDateFormat(index: indexPath.row) +  "\n" //Index番号から表示する日を求める
                 }else{
-                    cell.textLabel?.text = dateManager.conversionDateFormat(index: indexPath.row) + "\n"+String(total)
+                    cell.textLabel?.text = dateManager.conversionDateFormat(index: indexPath.row) + "\n¥" + String(total)
                 }
             }
         }
